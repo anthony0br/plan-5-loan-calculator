@@ -5,7 +5,7 @@ Calculates the number of years you will be charged for your loan.
 
 Created because I couldn't find any up to date calculators.
 
-The working calculator can be found in main.py while I am working on a web version.
+The web version is work in progress, using React.js, to be hosted at https://anthony0br.github.io/plan-5-loan-calculator/. The working calculator can be found in main.py while I am working on a web version.
 
 # Getting Started with Create React App
 
