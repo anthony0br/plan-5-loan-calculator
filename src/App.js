@@ -123,8 +123,6 @@ function App() {
         </p>
       </header>
       <body className="App-body">
-        <h1>Number of Years Calculator</h1>
-       <p>Currently, this app only calculates the number of years it will take to repay a loan. It will also output your final salary, to help you adjust the salary model. Calculators for other missing variables will be added later.</p>
         <CalculateYearsForm></CalculateYearsForm>
       </body>
       <footer className="App-footer">

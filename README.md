@@ -1,11 +1,10 @@
 # plan-5-loan-calculator
-Calculator for plan 5 UK student loans.
 
-Calculates the number of years you will be charged for your loan.
+https://anthony0br.github.io/plan-5-loan-calculator/
 
-Created because I couldn't find any up to date calculators.
+Calculator for plan 5 UK student loans. Calculates the number of years you will be charged for your loan. Created because I couldn't find any up to date calculators.
 
-The web version is work in progress, using React.js, to be hosted at https://anthony0br.github.io/plan-5-loan-calculator/. The working calculator can be found in main.py while I am working on a web version.
+Create React App readme below:
 
 # Getting Started with Create React App
 
