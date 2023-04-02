@@ -23,6 +23,7 @@ function CalculateYearsForm(props) {
   const [resultsDisplay, setResultsDisplay] = useState("none");
   const [yearsResult, setYearsResult] = useState("");
   const [salaryResult, setSalaryResult] = useState("");
+  const [totalPaid, setTotalPaid] = useState("");
 
   // Calculate number of years, set states of results component to display results
   function handleSubmit(submitEvent) {
@@ -61,6 +62,7 @@ function CalculateYearsForm(props) {
     // Calculate result
     let numYears = 0;
     let threshold = THRESHOLD;
+    let totalPaid = 0;
     while (loanRemaining > 0 && numYears < WRITE_OFF_TIME) {
       numYears += 1;
 
@@ -72,13 +74,16 @@ function CalculateYearsForm(props) {
 
       // Repay part of the loan
       if (salary > threshold) {
-        loanRemaining -= (salary - threshold) * REPAY_RATE
+        let toPay = (salary - threshold) * REPAY_RATE;
+        totalPaid += toPay;
+        loanRemaining -= toPay;
       }
     }
 
     // Display results
     setYearsResult(numYears);
     setSalaryResult(Math.round(salary * 100) / 100);
+    setTotalPaid(Math.round(totalPaid * 100) / 100)
     setResultsDisplay("block");
   }
 
@@ -107,8 +112,9 @@ function CalculateYearsForm(props) {
       <br></br>
       <div className="results" style={resultsStyle}>
         <h1>Results</h1>
-        <p>It will take roughly {yearsResult} years to pay off your plan 5 student loan. Note that after 40 years, your debt will be wiped.</p>
-        <p>At the year of paying off the loan, the model puts your salary at £{salaryResult}.</p>
+        <p>It will take roughly {yearsResult} years to pay off your plan 5 student loan. Note that after 40 years, your debt is wiped.</p>
+        <p>You will have paid a total of £{totalPaid} in student loan fees.</p>
+        <p>The the model puts your salary at the time of paying off the loan at £{salaryResult}.</p>
       </div>
     </form>
   );
