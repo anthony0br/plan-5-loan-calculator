@@ -8,7 +8,7 @@ const AVERAGE_RPI = 0.032;
 const REPAY_RATE = 0.09;
 const WRITE_OFF_TIME = 40;
 
-function CalculateYearsForm(props) {
+function CalculatorForm(props) {
   // Input hooks
   const [loanAmount, setLoanAmount] = useState("42000");
   const [startingSalary, setStartingSalary] = useState("25000");
@@ -94,7 +94,7 @@ function CalculateYearsForm(props) {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Total loan to pay</h3>
-      <p>The total outstanding amount you need to pay, including maintenance and tuition.</p>
+      <p>The total outstanding loan, including maintenance and tuition. Remember, this will include any interest added during your studies.</p>
       <input type="number" className={loanClass} value={loanAmount} onChange={event => {setLoanAmount(event.target.value)}} />
 
       <h3>Salary modelling</h3>
@@ -112,9 +112,9 @@ function CalculateYearsForm(props) {
       <br></br>
       <div className="results" style={resultsStyle}>
         <h1>Results</h1>
-        <p>It will take roughly {yearsResult} years to pay off your plan 5 student loan. Note that after 40 years, your debt is wiped.</p>
-        <p>You will have paid a total of £{totalPaid} in student loan fees.</p>
-        <p>The the model puts your salary at the time of paying off the loan at £{salaryResult}.</p>
+        <p><b>These results are a rough estimate only. This model is simplified and makes lots of assumptions, which may become outdated. Government policy is likely to change. See the footer for more information.</b></p>
+        <p>It will take roughly {yearsResult} years to pay off your plan 5 student loan. Remember that after 40 years, your debt is wiped.</p>
+        <p>According to the model, you will have paid a total of £{totalPaid} in student loan fees and your salary at the time of paying off the loan will be £{salaryResult}.</p>
       </div>
     </form>
   );
@@ -129,15 +129,19 @@ function App() {
         </p>
       </header>
       <body className="App-body">
-        <CalculateYearsForm></CalculateYearsForm>
+        <CalculatorForm></CalculatorForm>
       </body>
       <footer className="App-footer">
         <p>
-          Created by Anthony O'Brien with React.js.
+          Created by Anthony O'Brien with <a href="https://github.com/facebook/create-react-app">Create React App</a> and React.js.
           <br /><br />
-          Results are only valid for <b>UK Plan 5</b> undergraduate student loans.
-          <br />
-          Assumptions such as rate of RPI, CPI and future government policy (e.g. threshold is linked to CPI and not frozen, interest is always RPI) have been made. Due to British politics, these assumptions may become invalid. Interest and payments are calculated anually in this model.
+          Results are an estimate and only for <b>UK Plan 5</b> undergraduate student loans.
+          Many assumptions have been made such as: 
+          the rate of RPI as 2.6%, the rate of CPI as 3.2%, interest and payments are calculated anually, your salary follows the model above, the threshold begins at £25,000 and is subsequently linked to CPI. 
+          Note that the threshold is currently frozen but will likely increase in the future, and interest may be increased for higher earners. 
+          Note that "Salary growth" includes all factors that increase exponentially such as national wage growth and percentage pay rises and "Salary increase" is not adjusted for inflation.
+          This tool is not financial advice. It is important you understand the implications of these assumptions and check their validity. 
+          If you notice any invalid assumptions, please raise an issue or pull request on GitHub or contact me.
           <br /><br />
           Licensed under GNU GPL-3.0. Last updated April 2023.
         </p>
