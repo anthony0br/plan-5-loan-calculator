@@ -54,6 +54,9 @@ function CalculateYearsForm(props) {
 
     // Set textboxes to valid
     setLoanClass("");
+    setSalaryClass("");
+    setIncreaseClass("");
+    setGrowthClass("");
 
     // Calculate result
     let numYears = 0;
@@ -69,7 +72,7 @@ function CalculateYearsForm(props) {
 
       // Repay part of the loan
       if (salary > threshold) {
-        loanRemaining = loanRemaining - (salary - threshold) * REPAY_RATE
+        loanRemaining -= (salary - threshold) * REPAY_RATE
       }
     }
 
