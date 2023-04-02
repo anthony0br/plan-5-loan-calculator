@@ -103,12 +103,12 @@ function App() {
       <footer className="App-footer">
         <p>
           Created by Anthony O'Brien with React.js.
-          <br></br>
+          <br /><br />
           Results are only valid for <b>UK Plan 5</b> undergraduate student loans.
-          <br></br>
+          <br />
           Assumptions such as rate of RPI, CPI and future government policy (e.g. threshold is linked to CPI and not frozen, interest is always RPI) have been made. Due to British politics, these assumptions may become invalid.
-          <br></br>
-          Licensed under GNU GPL-3.0. Last update April 2023.
+          <br /><br />
+          Licensed under GNU GPL-3.0. Last updated April 2023.
         </p>
         <a href="https://github.com/anthony0br/plan-5-loan-calculator">View Github repository</a>
       </footer>
