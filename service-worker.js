@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/plan-5-loan-calculator/precache-manifest.cd1d5446e6a4179279d81e80499c1c4a.js"
+  "/plan-5-loan-calculator/precache-manifest.7c98815d6c15b4e8e0af9f1593768ace.js"
 );
 
 workbox.clientsClaim();
