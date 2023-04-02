@@ -1,6 +1,13 @@
 import './App.css';
 import React, { useState }  from 'react';
 
+// Constant assumptions
+const THRESHOLD = 25000;
+const AVERAGE_CPI = 0.026;
+const AVERAGE_RPI = 0.032;
+const REPAY_RATE = 0.09;
+const WRITE_OFF_TIME = 40;
+
 function CalculateYearsForm(props) {
   // Input hooks
   const [loanAmount, setLoanAmount] = useState("42000");
@@ -15,6 +22,7 @@ function CalculateYearsForm(props) {
   const [growthClass, setGrowthClass] = useState("");
   const [resultsDisplay, setResultsDisplay] = useState("none");
   const [yearsResult, setYearsResult] = useState("");
+  const [salaryResult, setSalaryResult] = useState("");
 
   // Calculate number of years, set states of results component to display results
   function handleSubmit(submitEvent) {
@@ -23,22 +31,22 @@ function CalculateYearsForm(props) {
     setResultsDisplay("none");
 
     // Check for empty or invalid amounts and cast inputs
-    let loanRemaining = Number(loanAmount)
+    let loanRemaining = Number(loanAmount);
     if (loanAmount === "" || Number.isNaN(loanRemaining) || loanRemaining < 0) {
       setLoanClass("invalid");
       return;
     }
-    let salary = Number(startingSalary)
+    let salary = Number(startingSalary);
     if (startingSalary === "" || Number.isNaN(salary) || salary < 0) {
       setSalaryClass("invalid");
       return;
     }
-    let increase = Number(salaryIncrease)
+    let increase = Number(salaryIncrease);
     if (salaryIncrease === "" || Number.isNaN(increase) || increase < 0) {
       setIncreaseClass("invalid");
       return;
     }
-    let growth = Number(salaryGrowth)
+    let growth = Number(salaryGrowth) * 0.01;
     if (salaryGrowth === "" || Number.isNaN(growth) || growth < 0) {
       setGrowthClass("invalid");
       return;
@@ -49,10 +57,25 @@ function CalculateYearsForm(props) {
 
     // Calculate result
     let numYears = 0;
+    let threshold = THRESHOLD;
+    while (loanRemaining > 0 && numYears < WRITE_OFF_TIME) {
+      numYears += 1;
 
+      // Increase loan, salary, and the threshold
+      loanRemaining += loanRemaining * AVERAGE_RPI;
+      salary += increase;
+      salary *= 1 + growth;
+      threshold += threshold * AVERAGE_CPI;
+
+      // Repay part of the loan
+      if (salary > threshold) {
+        loanRemaining = loanRemaining - (salary - threshold) * REPAY_RATE
+      }
+    }
 
     // Display results
     setYearsResult(numYears);
+    setSalaryResult(Math.round(salary * 100) / 100);
     setResultsDisplay("block");
   }
 
@@ -81,7 +104,8 @@ function CalculateYearsForm(props) {
       <br></br>
       <div className="results" style={resultsStyle}>
         <h1>Results</h1>
-        <p>It will take roughly {yearsResult} to pay off your plan 5 student loan. Note that after 40 years, your debt will be wiped.</p>
+        <p>It will take roughly {yearsResult} years to pay off your plan 5 student loan. Note that after 40 years, your debt will be wiped.</p>
+        <p>At the year of paying off the loan, the model puts your salary at £{salaryResult}.</p>
       </div>
     </form>
   );
@@ -97,7 +121,7 @@ function App() {
       </header>
       <body className="App-body">
         <h1>Number of Years Calculator</h1>
-       <p>Currently, this app only calculates the number of years it will take to repay a loan, ignoring the write-off after 40 years. It will also output your final salary, to help you adjust the salary model. Calculators for other missing variables will be added later.</p>
+       <p>Currently, this app only calculates the number of years it will take to repay a loan. It will also output your final salary, to help you adjust the salary model. Calculators for other missing variables will be added later.</p>
         <CalculateYearsForm></CalculateYearsForm>
       </body>
       <footer className="App-footer">
@@ -106,7 +130,7 @@ function App() {
           <br /><br />
           Results are only valid for <b>UK Plan 5</b> undergraduate student loans.
           <br />
-          Assumptions such as rate of RPI, CPI and future government policy (e.g. threshold is linked to CPI and not frozen, interest is always RPI) have been made. Due to British politics, these assumptions may become invalid.
+          Assumptions such as rate of RPI, CPI and future government policy (e.g. threshold is linked to CPI and not frozen, interest is always RPI) have been made. Due to British politics, these assumptions may become invalid. Interest and payments are calculated anually in this model.
           <br /><br />
           Licensed under GNU GPL-3.0. Last updated April 2023.
         </p>
