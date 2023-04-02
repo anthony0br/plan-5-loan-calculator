@@ -34,12 +34,12 @@ function CalculateYearsForm(props) {
       return;
     }
     let increase = Number(salaryIncrease)
-    if (loanAmount === "" || Number.isNaN(increase) || increase < 0) {
+    if (salaryIncrease === "" || Number.isNaN(increase) || increase < 0) {
       setIncreaseClass("invalid");
       return;
     }
     let growth = Number(salaryGrowth)
-    if (loanAmount === "" || Number.isNaN(growth) || growth < 0) {
+    if (salaryGrowth === "" || Number.isNaN(growth) || growth < 0) {
       setGrowthClass("invalid");
       return;
     }
