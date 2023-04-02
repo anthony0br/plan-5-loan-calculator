@@ -50,6 +50,7 @@ function CalculateYearsForm(props) {
     // Calculate result
     let numYears = 0;
 
+
     // Display results
     setYearsResult(numYears);
     setResultsDisplay("block");
@@ -61,9 +62,6 @@ function CalculateYearsForm(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Number of Years Calculator</h1>
-      <p>Currently, this app only calculates the number of years it will take to repay a loan, ignoring the write-off after 40 years. It will also output your final salary, to help you adjust the salary model. Calculators for other missing variables will be added later.</p>
-      
       <h3>Total loan to pay</h3>
       <p>The total outstanding amount you need to pay, including maintenance and tuition.</p>
       <input type="number" className={loanClass} value={loanAmount} onChange={event => {setLoanAmount(event.target.value)}} />
@@ -94,18 +92,21 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Student Loan Calculator
+          Plan 5 Student Loan Calculator
         </p>
       </header>
       <body className="App-body">
+        <h1>Number of Years Calculator</h1>
+       <p>Currently, this app only calculates the number of years it will take to repay a loan, ignoring the write-off after 40 years. It will also output your final salary, to help you adjust the salary model. Calculators for other missing variables will be added later.</p>
         <CalculateYearsForm></CalculateYearsForm>
       </body>
       <footer className="App-footer">
         <p>
           Created by Anthony O'Brien with React.js.
           <br></br>
-          Designed to estimate repayment information for plan 5 student loans.
-          Assumptions such as rate of RPI, CPI and future government policy have been made.
+          Results are only valid for <b>UK Plan 5</b> undergraduate student loans.
+          <br></br>
+          Assumptions such as rate of RPI, CPI and future government policy (e.g. threshold is linked to CPI and not frozen, interest is always RPI) have been made. Due to British politics, these assumptions may become invalid.
           <br></br>
           Licensed under GNU GPL-3.0. Last update April 2023.
         </p>
