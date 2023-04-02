@@ -10,9 +10,9 @@ body {
   color: white;
   border-radius: 3vh;
   padding-top: 1vh;
-  padding-bottom: 1vh;
-  padding-left: 2vh;
-  padding-right: 2vh;
+  padding-bottom: 3vh;
+  padding-left: 3vh;
+  padding-right: 3vh;
   text-align: centre;
   margin: 0 auto;
 }
