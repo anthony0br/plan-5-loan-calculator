@@ -1,11 +1,33 @@
-.App {
+body {
   text-align: center;
+  background-color: #282c34;
+}
+
+.results {
+  background-color: #282c34;
+  min-width: 40vw;
+  max-width: 40vh;
+  color: white;
+  border-radius: 3vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  text-align: centre;
+  margin: 0 auto;
 }
 
 input {
-  width: 20vw;
+  width: 100px;
   padding: 10px 15px;
   box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input.invalid {
+  border-color: red;
+  background-color: lightcoral;
 }
 
 button {
@@ -29,7 +51,7 @@ button:active {
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,18 +61,19 @@ button:active {
 }
 
 .App-body {
-  min-height: 78vh;
+  padding: 2vh;
+  min-height: 70vh;
+  background-color: white;
 }
 
 .App-footer {
   background-color: #282c34;
-  min-height: 12vh;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   color: white;
+  padding: 2vh;
 }
 
 .App-footer > a {
